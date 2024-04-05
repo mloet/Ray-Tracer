@@ -2,11 +2,9 @@ import numpy as np
 
 
 def vec(list):
-    """Handy shorthand to make a single-precision float array."""
     return np.array(list, dtype=np.float32)
 
 def normalize(v):
-    """Return a unit vector in the direction of the vector v."""
     return v / np.linalg.norm(v)
 
 

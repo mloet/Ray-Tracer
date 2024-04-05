@@ -1,5 +1,0 @@
-For this assignment, I personally added the texture mapping which consisted of...
-1) Writing the texture_fn() that returned texture for a given surface and point on it
-2) Refactoring code to use texture_fn()
-3) Finding, loading, and assigning textures to objects from online images to use to project onto certain surfaces.
-Overall, my partner worked on making the scene and I worked on making the textures that would be used by that scene.

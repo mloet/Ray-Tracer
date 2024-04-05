@@ -53,8 +53,6 @@ class Ray:
           direction : (3,) -- the direction of the ray, a 3D vector (not necessarily normalized)
           start, end : float -- the minimum and maximum t values for intersections
         """
-        # Convert these vectors to double to help ensure intersection
-        # computations will be done in double precision
         self.origin = np.array(origin, np.float64)
         self.direction = np.array(direction, np.float64)
         self.start = start
@@ -124,7 +122,6 @@ class Sphere:
         Return:
           Hit -- the hit data
         """
-        # TODO A4 implement this function
         start_point = ray.origin + ray.start * ray.direction
         d = ray.direction
         ec = start_point - self.center
@@ -170,7 +167,6 @@ class Triangle:
         Return:
           Hit -- the hit data
         """
-        # TODO A4 implement this function
         start_point = ray.origin + ray.start * ray.direction
         d = ray.direction
         A = np.array([self.vs[0] - self.vs[1], self.vs[0] - self.vs[2], d])
@@ -227,7 +223,6 @@ class Camera:
         self.width = self.height * aspect
         self.up = up
 
-        # TODO A4 implement this constructor to store whatever you need for ray generation
 
     def generate_ray(self, img_point):
         """Compute the ray corresponding to a point in the image.
@@ -238,7 +233,6 @@ class Camera:
         Return:
           Ray -- The ray corresponding to that image location (not necessarily normalized)
         """
-        # TODO A4 implement this function
         self.up -= np.dot(self.up, normalize(self.distance)) * normalize(
             self.distance)
         horz = np.cross(self.distance, self.up)
@@ -273,7 +267,6 @@ class PointLight:
         Return:
           (3,) -- the light reflected from the surface
         """
-        # TODO A4 implement this function
         if hit == no_hit:
             return scene.bg_color
         r = np.linalg.norm(hit.point - self.position)
@@ -310,7 +303,6 @@ class AmbientLight:
         Return:
           (3,) -- the light reflected from the surface
         """
-        # TODO A4 implement this function
         if hit == no_hit:
             return scene.bg_color
         return self.intensity * hit.material.k_a
@@ -336,7 +328,6 @@ class Scene:
         Return:
           Hit -- the hit data
         """
-        # TODO A4 implement this function
         min_hit = no_hit
         min_surf = None
         for s in self.surfs:
@@ -391,10 +382,7 @@ def shade(ray, hit, scene, lights, surface, depth=0):
       depth : int -- the recursion depth so far
     Return:
       (3,) -- the color seen along this ray
-    When mirror reflection is being computed, recursion will only proceed to a depth
-    of MAX_DEPTH, with zero contribution beyond that depth.
     """
-    # TODO A4 implement this function
 
     res = vec([0, 0, 0])
     sray = Ray(hit.point, -1 * ray.direction, EPSILON)
@@ -431,7 +419,6 @@ def render_image(camera, scene, lights, nx, ny):
     Returns:
       (ny, nx, 3) float32 -- the RGB image
     """
-    # TODO A4 implement this function
     res = np.zeros((ny, nx, 3), np.float32)
     for x in range(nx):
         for y in range(ny):
